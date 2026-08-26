@@ -1,0 +1,20 @@
+{
+  "name": "pankit",
+  "version": "0.1.0",
+  "description": "Software delivery lifecycle skills. 1 skill with 9 commands (/pankit spec, /pankit code, /pankit review, etc.), one reference file per stage.",
+  "author": {
+    "name": "PanKit",
+    "email": "maintainers@pankit.example"
+  },
+  "homepage": "https://github.com/pankit/pankit-community",
+  "repository": "https://github.com/pankit/pankit-community",
+  "license": "MIT",
+  "keywords": [
+    "design",
+    "frontend",
+    "ui",
+    "ux",
+    "skills",
+    "hooks"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "spec": {
+    "description": "PLACEHOLDER. Turn a raw request into a written specification: problem statement, users, acceptance criteria, non-goals, and open questions. Use at the start of a change, before any planning or code, when what to build is not yet written down.",
+    "argumentHint": "[feature or request]"
+  },
+  "plan": {
+    "description": "PLACEHOLDER. Turn an accepted spec into a sequenced implementation plan: phases, file ownership, dependencies, risks, and rollback. Use once the spec is settled and before writing code, especially for work that spans several files or sessions.",
+    "argumentHint": "[spec path or feature]"
+  },
+  "design": {
+    "description": "PLACEHOLDER. Decide the technical shape before implementation: interfaces, data model, module boundaries, and the trade-offs behind each choice. Use when a change has more than one viable architecture and the decision should be recorded.",
+    "argumentHint": "[component or subsystem]"
+  },
+  "code": {
+    "description": "PLACEHOLDER. Implement an accepted plan or a scoped change against the existing conventions of the repository. Use when the scope is already clear and the remaining work is writing and wiring the code.",
+    "argumentHint": "[plan path or task]"
+  },
+  "test": {
+    "description": "PLACEHOLDER. Write and run the tests that prove a change behaves as specified, then report what passed, what failed, and what is still uncovered. Use after implementation, or first when working test-driven.",
+    "argumentHint": "[target]"
+  },
+  "review": {
+    "description": "PLACEHOLDER. Review a diff, branch, or pull request for correctness, regressions, and maintainability, and report findings ranked by severity with evidence. Use before merging.",
+    "argumentHint": "[diff, branch, or PR]"
+  },
+  "docs": {
+    "description": "PLACEHOLDER. Create or reconcile the documentation a change owes: READMEs, references, changelogs, and agent context files. Use when behavior, setup, commands, configuration, or public contracts changed.",
+    "argumentHint": "[target]"
+  },
+  "release": {
+    "description": "PLACEHOLDER. Run the release checklist: version bump, changelog entry, build verification, tag, and publish. Use when a set of merged changes is ready to ship.",
+    "argumentHint": "[component or version]"
+  },
+  "retro": {
+    "description": "PLACEHOLDER. Capture what a finished piece of work taught the team: what held, what broke, and which decisions should become durable convention. Use after a release or a difficult debugging session.",
+    "argumentHint": "[period or milestone]"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: Pankit
+  short_description: Use when the user wants to specify, plan, design, implement, test, review, document,...
+  default_prompt: Use Pankit to redesign, critique, audit, or polish this frontend.
