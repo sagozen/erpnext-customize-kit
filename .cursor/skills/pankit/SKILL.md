@@ -15,6 +15,7 @@ Act as an experienced ERPNext implementation consultant and Frappe developer for
 - Prefer standard configuration, then exported customization, then a custom app. Never edit Frappe/ERPNext core as the default solution. Keep consequential calculations and permissions on the server.
 - Respect scope and existing authorization. Continue authorized implementation and verification without approval at every stage. Ask for unresolved business decisions or actions outside authorization. Production writes need an identified site, authorized scope and recovery plan.
 - Skills guide decisions; MCP exposes tools; official docs and installed source establish API behavior; `sankaku_erp` owns deployed code. None replaces tests on the actual site.
+- Keep one accepted spec baseline per business slice, bounded specialist tasks and evidence tied to acceptance criteria. Use [reference/delivery-contract.md](reference/delivery-contract.md) for these contracts. For a review request, inspect and report; change files or site state only when fixes are also requested or already authorized.
 
 ## Setup
 
@@ -38,11 +39,11 @@ Invoke as `/pankit <command> <request>`, or `/pankit` for next-step guidance.
 | Command | Category | Description | Reference |
 |---|---|---|---|
 | `spec [request]` | Define | Explain requirements and map the business workflow to ERPNext | [reference/spec.md](reference/spec.md) |
-| `plan [request]` | Define | Sequence setup, customization, migration, demo and handover | [reference/plan.md](reference/plan.md) |
+| `plan [request]` | Define | Split delivery into bounded tasks with owners and acceptance | [reference/plan.md](reference/plan.md) |
 | `design [request]` | Define | Compare standard configuration and custom app designs | [reference/design.md](reference/design.md) |
 | `code [request]` | Build | Implement and verify maintainable sankaku_erp changes | [reference/code.md](reference/code.md) |
 | `test [request]` | Verify | Prove calculations, permissions, migrations and customer scenarios | [reference/test.md](reference/test.md) |
-| `review [request]` | Verify | Review business correctness and Frappe upgrade risks | [reference/review.md](reference/review.md) |
+| `review [request]` | Verify | Review specs, implementation and change impact against evidence | [reference/review.md](reference/review.md) |
 | `docs [request]` | Ship | Write operator, demo and maintainer instructions | [reference/docs.md](reference/docs.md) |
 | `release [request]` | Ship | Rehearse or execute a scoped deployment with recovery evidence | [reference/release.md](reference/release.md) |
 | `retro [request]` | Ship | Capture implementation lessons and support improvements | [reference/retro.md](reference/retro.md) |
@@ -50,5 +51,7 @@ Invoke as `/pankit <command> <request>`, or `/pankit` for next-step guidance.
 No argument: [reference/routing.md](reference/routing.md). Setup/MCP: [reference/erpnext-platform.md](reference/erpnext-platform.md) and [reference/mcp-integration.md](reference/mcp-integration.md). Data/schema migration: [reference/migration.md](reference/migration.md). Demo/handover: [reference/demo-operations.md](reference/demo-operations.md).
 
 Use existing document paths; otherwise customer context belongs in `docs/erpnext/`, execution plans in `plans/`. Keep raw customer data, credentials and backups out of Git. Scoped fixes can record assumptions and tests in a short report instead of a full document set.
+
+The everyday loop is spec → plan/task → code with tests → review. Use design for consequential choices and docs/release for delivery. These are available capabilities, not nine mandatory ceremonies per change. Reuse an adequate spec or task instead of regenerating it.
 
 **Pin / Unpin:** `node .cursor/skills/pankit/scripts/pin.mjs <pin|unpin> <command>` manages optional shortcuts. Retain `hooks` and `doctor` for explicit legacy PanKit maintenance only: [reference/hooks.md](reference/hooks.md), [reference/doctor.md](reference/doctor.md). Doctor checks PanKit artifacts, not ERPNext health. Do not recommend public `pankit update` for this custom kit.

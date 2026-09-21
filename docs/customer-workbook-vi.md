@@ -2,6 +2,8 @@
 
 Copy mẫu cần dùng vào project khách, điền bằng bằng chứng thật. Các ô “chưa rõ” phải được giải quyết bởi người có thẩm quyền; không cho agent tự điền thành policy.
 
+Khi giao chuyên gia hoặc review thay đổi, dùng [mẫu spec/task/review gọn](spec-review-workflow-vi.md). Tài liệu này giữ bối cảnh và prompt triển khai toàn dự án; không cần tạo lại mọi hồ sơ cho từng task nhỏ.
+
 ## Prompt mở đầu
 
 Claude Code dùng `/pankit`; Codex dùng `$pankit`. Ví dụ bên dưới dùng Claude:
@@ -59,6 +61,8 @@ Quyết định cần ghi: bài toán → bằng chứng → phương án → l�
 /pankit plan docs/erpnext/requirements.md
 Lập kế hoạch đủ từ dev site đến demo, migration, UAT và bàn giao.
 Ghi dependency, đầu ra, tests, rollback, effort range và giả định.
+Trong phần custom, chia task có baseline/rule/AC, phạm vi sở hữu,
+interface và bằng chứng bàn giao; ưu tiên hoàn tất review một phần trước.
 ```
 
 ```text

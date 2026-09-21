@@ -40,12 +40,15 @@ $pankit spec <yêu cầu khách>   # Codex
 
 Chỉ `/pankit` hoặc `$pankit` để chọn việc tiếp theo. Agent tiếp tục các bước đã được cho phép; chỉ hỏi quyết định nghiệp vụ hoặc quyền truy cập còn thiếu.
 
+Với mô hình một người điều phối và thuê chuyên gia: dùng **spec ngắn → task rõ → code kèm tests → review theo baseline**. Xem [hướng dẫn giao việc và review](docs/spec-review-workflow-vi.md), có mẫu spec, task, prompt review và cách đánh giá yêu cầu thay đổi. Không cần cài thêm bộ skill BA.
+
 ## Hướng dẫn
 
 - [Cài kit, Frappe skills và tạo app ban đầu](docs/getting-started-vi.md)
 - [Kết nối ERPNext MCP](docs/mcp-setup-vi.md)
 - [Triển khai dự án rèm đến vận hành](docs/curtain-delivery-playbook-vi.md)
 - [Prompt và mẫu hồ sơ khách](docs/customer-workbook-vi.md)
+- [Spec, giao chuyên gia và review thay đổi](docs/spec-review-workflow-vi.md)
 - [Kiến trúc và bảo trì kit](docs/erpnext-kit-architecture.md)
 - [Nghiệp vụ và công thức minh họa](skill/reference/curtain-domain.md)
 - [Chuyển sang ngành khác](skill/reference/domain-adaptation.md)

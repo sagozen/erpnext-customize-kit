@@ -17,7 +17,7 @@ Read accepted criteria, customer-approved worked examples, role matrix and test 
 3. Exercise save/submit/cancel/amend and UI/API access as each real role. Check unauthorized reads/exports, company isolation and server rejection of client-tampered totals.
 4. Test partial delivery/payment, remeasurement after approval, shortages, subcontracting where used, rework and returns. Verify stock/financial effects against the agreed process.
 5. Test duplicate imports, missing links, rejected rows, interrupted execution and reconciliation. Test old-site upgrades, a second migrate and restore rehearsal.
-6. Record requirement → scenario → command/manual steps → expected → actual → evidence. Separate automated tests, manual UAT and not-run checks. Never substitute mocked Bench/MCP output for live integration evidence.
+6. Record baseline/rule/AC ID → scenario → command/manual steps → expected → actual → evidence. Separate automated tests, manual UAT and not-run checks. Never substitute mocked Bench/MCP output for live integration evidence. A changed rule invalidates affected earlier results; keep the earlier record and rerun relevant checks against the new revision.
 
 ## What this produces
 

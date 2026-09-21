@@ -15,6 +15,10 @@ PanKit remains one skill with nine commands. The source of truth is `skill/SKILL
 
 The kit intentionally does not ship a fake app scaffold or guessed DocTypes as working ERPNext functionality. Generate the real app in a compatible Bench and implement the approved customer contract.
 
+`skill/reference/delivery-contract.md` owns the compact spec baseline, specialist task, change delta and review evidence contract. The command references load it as needed; [the Vietnamese workflow](spec-review-workflow-vi.md) shows how a solo founder uses it. Review inspects specs, tasks, diffs and proposed changes without implicitly authorizing repairs. A review verdict names its gate and never replaces customer UAT or deployment authorization.
+
+The workflow uses independently authored ERPNext instructions informed by a local review of general BA practices. It does not bundle the commercial AI4BA kit, its templates/scripts or personal license metadata, and does not depend on that kit being installed. Keep one skill and existing commands rather than adding a separate BA command family.
+
 ## Build and install
 
 `bun run build` compiles without syncing tracked harnesses. `bun run build:release` also updates `.claude`, `.cursor`, `.codex`, `.agents` and `plugin` from source. Do not hand-edit those outputs. The explicit ERPNext installer copies just the compiled skill into `.claude/skills` and/or `.agents/skills` in an existing project; no hooks or global config are installed.

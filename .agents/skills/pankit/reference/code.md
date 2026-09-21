@@ -8,7 +8,7 @@ Implement and verify maintainable sankaku_erp changes when requested or needed t
 
 ## Read first
 
-Read the scoped plan, actual controllers, hooks and tests. Use [erpnext-platform.md](erpnext-platform.md) and installed Frappe skills covering the touched API. Read [migration.md](migration.md) for patches and [mcp-integration.md](mcp-integration.md) before site access.
+Read the task's spec baseline/rule/AC IDs, owned files/interfaces, actual controllers, hooks and tests. Use [delivery-contract.md](delivery-contract.md) for task and change boundaries, [erpnext-platform.md](erpnext-platform.md) and installed Frappe skills covering the touched API. Read [migration.md](migration.md) for patches and [mcp-integration.md](mcp-integration.md) before site access.
 
 ## Steps
 
@@ -22,7 +22,7 @@ Read the scoped plan, actual controllers, hooks and tests. Use [erpnext-platform
 
 ## What this produces
 
-Application code, exported configuration, migrations and tests, with verified/unverified behavior distinguished.
+Application code, exported configuration, migrations and tests, plus a review packet: baseline, diff/base/head, AC evidence, environment and remaining gaps. If the implementation needs a different business outcome or shared interface, record the impact before changing that contract. Preserve other contributors’ work.
 
 ## Handoff
 

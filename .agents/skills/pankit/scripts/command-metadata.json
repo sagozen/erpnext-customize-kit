@@ -4,7 +4,7 @@
     "argumentHint": "[request, plan or project]"
   },
   "plan": {
-    "description": "Sequence setup, customization, migration, demo and handover. Use for ERPNext/Frappe customer delivery with the active business domain.",
+    "description": "Split ERPNext delivery into bounded tasks with owners, dependencies and acceptance evidence.",
     "argumentHint": "[request, plan or project]"
   },
   "design": {
@@ -20,7 +20,7 @@
     "argumentHint": "[request, plan or project]"
   },
   "review": {
-    "description": "Review business correctness and Frappe upgrade risks. Use for ERPNext/Frappe customer delivery with the active business domain.",
+    "description": "Review ERPNext specs, task packets, implementation and change impact against the accepted baseline. Report findings without repairs unless authorized.",
     "argumentHint": "[request, plan or project]"
   },
   "docs": {

@@ -1,5 +1,16 @@
 # Verification record, 2026-09-21
 
+## Lean spec and review update
+
+Against baseline `9d88ac3`, the workflow update changed authored instructions/docs and regenerated provider artifacts. It added no executable behavior, command or dependency.
+
+- Fresh `bun run build:release` passed, including repository prose, routing and packaging validators.
+- Fresh focused tests (`erpnext-kit`, `skill-reference`, `openai-plugin`): 13 passed, zero failures/skips.
+- Fresh Claude/Codex project-local install succeeded; repeat installation reported both skills unchanged.
+- Local Markdown links in 28 documents and shared contract equality across four tracked provider outputs passed.
+- Independent source review found no actionable defects, including walkthroughs of an unaccepted draft spec and green unit tests with unrun role/site checks. This was a source-based assessment, not an executed model behavior evaluation.
+- The full core/default suites were not rerun for this instruction-only update. Their earlier results and the unresolved plugin E2E limitation are recorded below. No live ERPNext validation was added.
+
 ## Passed
 
 - `bun run build:release`: compiled provider skills, plugin bundles and repository validators.

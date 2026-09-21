@@ -101,3 +101,5 @@ Ghi versions thật, hosting, app path, site dev/test/production và phạm vi t
 ## 6. Từ cài đặt đến đơn hàng đầu tiên
 
 Làm [hướng dẫn MCP](mcp-setup-vi.md) nếu cần đọc site từ agent. Đọc [playbook triển khai](curtain-delivery-playbook-vi.md), dùng [prompt và mẫu hồ sơ](customer-workbook-vi.md). Bắt đầu từ một đơn hàng đã ẩn thông tin riêng tư thay vì yêu cầu agent tạo ngay toàn bộ ERP.
+
+Để giao chuyên gia mà vẫn kiểm soát thay đổi, theo [spec và review cho người điều phối một mình](spec-review-workflow-vi.md). Chỉ cần bổ sung baseline/AC và task packet vào tài liệu hiện có. Review spec trước khi giao phần khó; review code và bằng chứng trước khi nhận bàn giao.

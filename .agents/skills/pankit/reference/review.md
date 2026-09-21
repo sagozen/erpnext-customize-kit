@@ -1,28 +1,29 @@
-# review: Review business correctness and Frappe upgrade risks
+# review: Review specs, implementation and change impact against evidence
 
 Stage: **Verify**. Invoked as `$pankit review`.
 
-## When this runs
+## Scope
 
-Review business correctness and Frappe upgrade risks when requested or needed to complete authorized ERPNext work.
+Use the supplied target: a spec, task packet, code diff or proposed business change. Inspect and report by default. Do not repair files, update the baseline, merge, deploy or write through MCP merely because a finding is clear. If fixes were also authorized, keep review findings distinct from the repair and recheck affected evidence.
 
 ## Read first
 
-Read the complete diff, accepted requirements/decisions, installed Frappe contracts and test results. Include exports, patches and deployment steps; check generated files against source.
+Read [delivery-contract.md](delivery-contract.md), the accepted requirements/decisions and target revision. For code, read the complete diff and relevant surrounding implementation, exports, patches, tests and deployment steps. Verify Frappe contracts against the actual version. Request missing context only where it prevents a reliable conclusion; continue independent checks.
 
-## Steps
+## Review in this order
 
-1. Trace measurement through quote, order, material demand, delivery and payment for touched behavior. Preserve quantity meanings and approved revisions.
-2. Look for core edits, untracked Desk changes, overbroad fixtures, incompatible hooks, client-only validation and unnecessary Item/BOM proliferation.
-3. Verify permissions, company isolation, secrets handling, lifecycle, idempotency, partial failures and migration/restore evidence.
-4. Report concrete failures with path/line, trigger, consequence, severity and verification. Separate defects from questions and missing runtime evidence.
-5. Preserve customer decisions. Present new evidence and trade-offs before reversing an explicit choice.
-6. Check requirements coverage and operator instructions. No critical findings does not mean customer UAT has occurred.
+1. **Contract:** identify the baseline and review gate. For specs, find ambiguous units, actors, states, permissions, contradictions and missing recovery paths. For task cards, check ownership, interfaces and evidence needed to hand work back without a live briefing. For code, map promised behavior to the actual change, including missing and unrequested behavior.
+2. **Business flow:** trace touched measurement, quote, order, material, delivery or payment behavior. Separate sale quantity from material/stock quantity. Check who can change approved data, how revisions affect old documents, relevant partial failures and operator recovery. Use customer-confirmed examples; do not manufacture formulas or financial policy.
+3. **Technical consequences:** inspect relevant core edits, untracked Desk changes, fixture scope, generated/source consistency, hooks, server validation, permissions/company isolation, secret handling, document lifecycle, repeated or concurrent writes, precision, migrations and restore evidence. Check operating burden such as unnecessary Item/BOM proliferation and changed operator instructions. Identify the actual failure path; do not dump an unrelated checklist on a small change.
+4. **Verification:** map rule/AC IDs to implementation and pass/fail/not-run evidence. Test expectations must not merely repeat the implementation. A green unit suite cannot prove site permissions, real document lifecycle, migration or customer UAT. Distinguish a demonstrated defect from an unverified risk.
+5. **Delta:** for a changed requirement, apply delivery-contract's defect/clarification/scope-change distinction. Show before/after and affected code, historical data, tests, tasks and operating cost. Preserve explicit decisions unless new evidence warrants reconsideration. Present options for unresolved business choices.
 
-## What this produces
+## Result
 
-Findings ordered by severity, validation gaps and readiness evidence.
+Lead with the gate and verdict defined in delivery-contract, then business consequences and the next owner/action. Give findings by severity with path/line or document section, rule/AC, trigger, impact and verification. Include a compact coverage table and outstanding decisions/evidence. Optional improvements do not block delivery without a demonstrated failure or agreed requirement.
+
+For an urgent financial/stock integrity or access defect, show its consequence first. Do not inflate severity because multiple agents repeated the same concern. “No defects found” must state reviewed scope and remaining limits.
 
 ## Handoff
 
-Fix confirmed defects with code, then docs and scoped release when checks pass.
+For review-only work, finish with the report. Within authorized implementation, consolidate repairs and recheck affected findings/tests; follow delivery-contract's stopping point for repeated disagreement. Release readiness and customer acceptance are separate decisions.
