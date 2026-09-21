@@ -2,18 +2,15 @@
   "name": "pankit",
   "version": "0.1.0",
   "author": "PanKit",
-  "description": "Agent skills for the software delivery lifecycle: one skill, nine commands, one reference file per stage",
+  "description": "ERPNext implementation skills for Sankaku curtain projects: one skill, nine commands",
   "keywords": [
-    "sdlc",
+    "erpnext",
+    "frappe",
+    "curtains",
     "skills",
-    "agent",
-    "ai",
-    "spec",
-    "plan",
-    "code",
-    "test",
-    "review",
-    "release"
+    "sankaku",
+    "claude-code",
+    "codex"
   ],
   "license": "Apache-2.0",
   "homepage": "https://github.com/pankit/pankit-community",
@@ -60,7 +57,8 @@
     "postpack": "cp README.repo.md README.md && rm README.repo.md",
     "release:skill": "node scripts/release.mjs skill",
     "release:cli": "node scripts/release.mjs cli",
-    "release:ext": "node scripts/release.mjs extension"
+    "release:ext": "node scripts/release.mjs extension",
+    "kit:install": "node scripts/install-erpnext-kit.mjs"
   },
   "dependencies": {
     "css-select": "^7.0.0",

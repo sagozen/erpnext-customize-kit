@@ -1,0 +1,43 @@
+{
+  "verifiedOn": "2026-09-21",
+  "frappeSkills": {
+    "repository": "https://github.com/Impertio-Studio/Frappe_Claude_Skill_Package",
+    "commit": "36cfa807518f48e4210fac2a5afc6adafad4c53e",
+    "skills": [
+      "syntax/frappe-syntax-customapp",
+      "syntax/frappe-syntax-doctypes",
+      "syntax/frappe-syntax-controllers",
+      "syntax/frappe-syntax-hooks",
+      "core/frappe-core-permissions",
+      "core/frappe-core-api",
+      "testing/frappe-testing-unit",
+      "ops/frappe-ops-app-lifecycle",
+      "ops/frappe-ops-backup",
+      "ops/frappe-ops-upgrades"
+    ]
+  },
+  "mcp": {
+    "repository": "https://github.com/rakeshgangwar/erpnext-mcp-server",
+    "commit": "1783265130e01c29f32666f383b52f6604103d51",
+    "entrypoint": "build/index.js",
+    "transport": "stdio",
+    "environment": [
+      "ERPNEXT_URL",
+      "ERPNEXT_API_KEY",
+      "ERPNEXT_API_SECRET"
+    ],
+    "liveSiteVerified": false,
+    "dependencyLock": "erpnext-mcp-package-lock.json",
+    "dependencyLockSha256": "0a8572c7c4644dc2d781ca2ad648bcc1607ffd8837fdea1c0f64c0c8195c9fdf",
+    "upstreamPackageSha256": "b76c2bf4f02bae30a41c9edb93513a0bb34921752b9fac02a550f99af92f390c",
+    "validation": {
+      "cleanInstall": "passed",
+      "build": "passed",
+      "protocolHandshake": "passed",
+      "listedTools": 11,
+      "runtimeAuditVulnerabilities": 0,
+      "auditedOn": "2026-09-21",
+      "liveSiteRead": "not-run"
+    }
+  }
+}

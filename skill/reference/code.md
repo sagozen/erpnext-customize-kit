@@ -1,38 +1,29 @@
-# code: implement an accepted plan against existing conventions
-
-> **PLACEHOLDER.** This file shows the shape a PanKit command reference takes. Replace the content with your own instructions; keep the section headings so the router, the build, and `skill-reference.test.mjs` keep working.
+# code: Implement and verify maintainable sankaku_erp changes
 
 Stage: **Build**. Invoked as `{{command_prefix}}pankit code`.
 
 ## When this runs
 
-Scope is settled and the remaining work is writing and wiring the change.
+Implement and verify maintainable sankaku_erp changes when requested or needed to complete authorized ERPNext work.
 
 ## Read first
 
-- The plan phase or the scoped task, including the files it is allowed to modify.
-- At least one existing file that does something similar, read before writing. Match its structure, naming, and comment density.
-- The project instruction files and any local convention documents that apply to the directory being changed.
+Read the scoped plan, actual controllers, hooks and tests. Use [erpnext-platform.md](erpnext-platform.md) and installed Frappe skills covering the touched API. Read [migration.md](migration.md) for patches and [mcp-integration.md](mcp-integration.md) before site access.
 
 ## Steps
 
-1. Confirm the scope boundary before the first edit. Work outside the phase file list is reported, not performed.
-2. Change existing files where that matches the design. Create new files only at real boundaries.
-3. Implement real behavior. Placeholder data, stubs, and shortcuts that exist only to make a check pass are failures, not progress.
-4. Prefer local helpers and existing test utilities over new abstractions. A second caller justifies an abstraction; a first one rarely does.
-5. Keep the change reviewable: one concern per commit, conventional commit format, no secrets.
+1. Establish app path, versions and a dev/test site. If no app exists use the installed Bench generator after checking help. This kit itself is not a Frappe app.
+2. Implement the accepted slice in sankaku_erp using standard document APIs. Enforce permissions and price/material invariants server-side. Client scripts improve usability; they cannot enforce integrity.
+3. Trace measurement/calculation revisions to quote/order lines. Use agreed precision/rounding and snapshot inputs so new prices/formulas do not rewrite accepted quotes.
+4. Export only app-owned configuration, fields and roles. Inspect exports for unrelated/customer data. Desk-only changes cannot be the sole source of production customization.
+5. Use save/submit/cancel/amend lifecycle APIs. Never write ledgers directly or force docstatus. Do not bypass validation/permissions to make imports pass. Justify privileged setup/patch code separately.
+6. Make creation retry-safe with durable source identities and permission checks. A timeout means unknown outcome; inspect state before retrying a write.
+7. Run focused tests and fix regressions. Verify fresh installation and upgrade from the previous app revision when schema/configuration changes. Record commands/results.
 
 ## What this produces
 
-The implemented change, plus a short report of what was built, what was skipped, and why.
+Application code, exported configuration, migrations and tests, with verified/unverified behavior distinguished.
 
 ## Handoff
 
-`test` proves it. `review` checks it. Neither is optional because the code looks right.
-
-## Notes for the author of this file
-
-- Write instructions to the model, not documentation about the model. Second person, imperative.
-- Say what to do and what not to do. A rule with no counter-case gets read as a suggestion.
-- Keep it loadable. This file is read in full every time the command runs, so length costs the user money on every invocation.
-- Reference other files by relative path so the build can rewrite them per provider.
+Continue test and review within scope. Report unavailable environment checks explicitly; documentation alone is not deployment.

@@ -1,38 +1,28 @@
-# plan: sequence an accepted spec into executable phases
-
-> **PLACEHOLDER.** This file shows the shape a PanKit command reference takes. Replace the content with your own instructions; keep the section headings so the router, the build, and `skill-reference.test.mjs` keep working.
+# plan: Sequence setup, customization, migration, demo and handover
 
 Stage: **Define**. Invoked as `{{command_prefix}}pankit plan`.
 
 ## When this runs
 
-A spec is accepted and the work is large enough that order, ownership, or risk needs deciding before code.
+Sequence setup, customization, migration, demo and handover when requested or needed to complete authorized ERPNext work.
 
 ## Read first
 
-- The accepted spec, including its non-goals. The plan inherits them; it does not relitigate them.
-- The files the change will touch, and which of them other work is likely to touch at the same time.
-- The verification the repository already has: test commands, lint, typecheck, build.
+Read accepted requirements, decisions, app structure and hosting constraints. Use [migration.md](migration.md) for data/schema changes and [demo-operations.md](demo-operations.md) for delivery.
 
 ## Steps
 
-1. Break the work into phases that each end in a verifiable state. A phase that cannot be checked is not a phase.
-2. For each phase record: goal, files it may modify, steps, how it is validated, and how it is rolled back.
-3. Name the dependencies between phases explicitly, so phases with none can run in parallel and the rest cannot start early.
-4. Call out the risky phase. There is almost always one, and naming it is what makes the rest of the plan honest.
-5. Restate the acceptance criteria from the spec at the end of the plan, so completion is measured against the original ask.
+1. Reuse agreed outcomes; distinguish kit installation, ERPNext provisioning and customer configuration.
+2. Sequence dev site/versions, standard workflow baseline, one complete order through custom app, permissions/tests, migration rehearsal, demo/UAT, cutover and support. Adjust to actual scope.
+3. Specify each phase's inputs, app modules/files, configuration owner, steps, tests, exit evidence and rollback. Do not assign an imaginary team to a solo founder.
+4. Map every requirement to a phase and acceptance check. Give effort ranges with assumptions/dependencies; distinguish implementation, hosting and support costs.
+5. Identify stock, accounting and customer-facing mutations. Separate disposable demo data from production imports and require restore evidence before cutover.
+6. Keep a short plan index and linked phase details. Completion requires exit evidence.
 
 ## What this produces
 
-A plan index with status, phases, dependencies, and acceptance criteria, plus one file per phase holding the execution detail.
+A plan under the repository convention with status, dependencies, acceptance, risks and rollback.
 
 ## Handoff
 
-`code` executes a phase. `design` runs first when a phase still has more than one viable architecture.
-
-## Notes for the author of this file
-
-- Write instructions to the model, not documentation about the model. Second person, imperative.
-- Say what to do and what not to do. A rule with no counter-case gets read as a suggestion.
-- Keep it loadable. This file is read in full every time the command runs, so length costs the user money on every invocation.
-- Reference other files by relative path so the build can rewrite them per provider.
+Execute authorized phases with code; use design for unresolved architecture.

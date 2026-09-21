@@ -1,38 +1,28 @@
-# spec: write the change down before building it
-
-> **PLACEHOLDER.** This file shows the shape a PanKit command reference takes. Replace the content with your own instructions; keep the section headings so the router, the build, and `skill-reference.test.mjs` keep working.
+# spec: Explain requirements and map the business workflow to ERPNext
 
 Stage: **Define**. Invoked as `/pankit spec`.
 
 ## When this runs
 
-The user wants something built, changed, or fixed, and no written scope exists for it.
+Explain requirements and map the business workflow to ERPNext when requested or needed to complete authorized ERPNext work.
 
 ## Read first
 
-- The user request, verbatim, including any constraint they stated in passing.
-- The code the request touches, and one nearby example of how similar behavior is already specified.
-- Any existing spec, ticket, or issue that overlaps, so this one does not contradict it.
+Read the client request and existing decisions. Load [curtain-domain.md](curtain-domain.md), or [domain-adaptation.md](domain-adaptation.md) for another industry.
 
 ## Steps
 
-1. State the problem in one paragraph: what is wrong or missing today, and for whom. Do not name a solution yet.
-2. Name the users and the situation they are in when this matters. A spec with no user is a wish list.
-3. Write acceptance criteria as observable behavior. Each one is a sentence a tester could pass or fail without asking a question.
-4. Write the non-goals. This is the section that prevents scope creep later, so it earns real thought rather than one throwaway line.
-5. List the open questions and who can answer each. Ask the user directly to clarify what you cannot infer. Resolve the ones that change the shape of the work; carry the rest into the spec as recorded unknowns.
+1. Restate the outcome in plain Vietnamese. Identify sales, surveyor, workshop, installer, owner and accountant responsibilities; one person may hold several roles.
+2. Walk through one actual order from contact to warranty. Request a redacted quote, measuring sheet and spreadsheet formulas. Ask a small batch of consequential questions, explaining why each changes scope; continue independent work.
+3. Record each requirement's source, actor, trigger, inputs/units, rule, exceptions, output, permission, standard ERPNext candidate and acceptance example. Mark standard fit unverified until checked against the installed version.
+4. Separate measurement, sale quantity, material consumption and stock quantity. Clarify in-house production, subcontracting and purchase/resale; support the customer's actual mix.
+5. Produce a fit-gap table: standard configuration / exported customization / app code / integration, rationale and evidence needed. Explain operating costs; do not claim everything is standard or invent fixed estimates.
+6. Record outcome, constraints, non-goals, acceptance criteria, assumptions and unresolved decisions with owners. Preserve requested scope.
 
 ## What this produces
 
-A spec file with sections: Problem, Users, Acceptance criteria, Non-goals, Open questions.
+Customer scope, fit-gap table, testable scenarios and glossary, normally in docs/erpnext/requirements.md.
 
 ## Handoff
 
-`plan` turns an accepted spec into phases. Do not start implementing from the spec alone when the work spans more than one file.
-
-## Notes for the author of this file
-
-- Write instructions to the model, not documentation about the model. Second person, imperative.
-- Say what to do and what not to do. A rule with no counter-case gets read as a suggestion.
-- Keep it loadable. This file is read in full every time the command runs, so length costs the user money on every invocation.
-- Reference other files by relative path so the build can rewrite them per provider.
+Use design for consequential options and plan for execution. Continue authorized delivery; pause only work dependent on missing decisions.

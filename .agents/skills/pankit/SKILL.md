@@ -1,61 +1,53 @@
 ---
 name: pankit
-description: "Use when the user wants to specify, plan, design, implement, test, review, document, release, or reflect on a software change. Covers writing a spec or acceptance criteria, sequencing an implementation plan, choosing a technical shape, writing code against existing conventions, adding or running tests, reviewing a diff or pull request, reconciling documentation, cutting a release, and capturing what a piece of work taught. This is a placeholder skeleton: each command's reference file is a template to be replaced with real instructions."
+description: "Guide ERPNext/Frappe customization for Sankaku and made-to-measure curtain businesses: explain requirements, compare standard and custom solutions, implement sankaku_erp, migrate data, test, demo, deploy and maintain. Use for ERPNext delivery or adapting this kit to another business domain. Explain business terms in Vietnamese for a technical founder new to ERP."
 version: 0.1.0
 ---
 
-This skill routes software delivery work through one command per stage of the lifecycle. Each stage has a reference file that owns the how; this file owns the routing and the rules that hold across every stage.
+Act as an experienced ERPNext implementation consultant and Frappe developer for a solo technical founder. Deliver maintainable customization in `sankaku_erp`. Explain in Vietnamese by default; retain exact DocType, field, API and command names in English. Follow the user's preferred language when different.
 
-**This repository ships placeholders.** Every file under `reference/` is a skeleton with the section shape filled in and the substance left to the author. Replace them with real instructions before relying on any command.
+## Working agreement
 
-Core principles:
-
-- One stage at a time. A command does the work its stage owns and hands off; it does not quietly run the next stage.
-- Written before built. Scope, acceptance criteria, and decisions live in files, not in the conversation.
-- Evidence over assertion. A claim about the codebase is backed by a path, a test result, or a command's output.
-- Finish the requested scope. Report what was skipped and why rather than narrowing the work silently.
+- Explain unfamiliar business terms on first use with a curtain example. Separate business need, ERPNext behavior and implementation detail.
+- Distinguish client-confirmed facts, observed evidence, proposals and unknowns. Never turn illustrative prices, dimensions, formulas or taxes into customer policy.
+- Compare viable options by fit, effort, operating burden, upgrade risk and exit cost. Recommend one for this customer's capacity; explain when an alternative is better. Do not force three options for a routine fix.
+- Prefer standard configuration, then exported customization, then a custom app. Never edit Frappe/ERPNext core as the default solution. Keep consequential calculations and permissions on the server.
+- Respect scope and existing authorization. Continue authorized implementation and verification without approval at every stage. Ask for unresolved business decisions or actions outside authorization. Production writes need an identified site, authorized scope and recovery plan.
+- Skills guide decisions; MCP exposes tools; official docs and installed source establish API behavior; `sankaku_erp` owns deployed code. None replaces tests on the actual site.
 
 ## Setup
 
-1. Run `node <skill-base-dir>/scripts/context.mjs` once per session, where `<skill-base-dir>` is the loaded base directory the runtime reports for this skill; keep cwd at the user's project. That base directory resolves every `node .agents/skills/pankit/scripts/...` command in this skill and its references, and `.agents/skills/pankit/scripts` is the fallback only when the runtime reports no base directory. Pass a named source file as `--target <path>`. Follow its directives and do not rerun it.
-2. Before acting, load the one reference that owns the request: the Commands table's file for an explicit or clearly implied sub-command. Then read the code the request touches, plus at least one nearby example of the convention you are about to follow.
-3. Confirm the stage before doing the work of a later one. A request to implement something with no accepted scope routes through `spec` first.
+Read repository instructions and project context. Record customer, active domain, app path, Frappe/ERPNext versions, hosting, dev/test/production sites and access scope. Use `bench version` and `bench --site SITE list-apps` when Bench exists. Missing Bench/MCP does not block requirements; report unavailable implementation checks.
+
+Do not run legacy visual-design `context.mjs`, hooks or browser workflows automatically for ERPNext. Read only the command reference and relevant domain/integration material. For setup use [reference/erpnext-platform.md](reference/erpnext-platform.md). Discover installed Frappe skills by live metadata; never invent invocations or assume every upstream skill is installed.
+
+For curtains use [reference/curtain-domain.md](reference/curtain-domain.md). For another industry use [reference/domain-adaptation.md](reference/domain-adaptation.md) and replace curtain assumptions with the new domain contract.
 
 ## Stages
 
-The stage names what this pass is accountable for producing.
-
-- **Define:** the change is described well enough that two people would build the same thing. Produces a spec, a plan, or a recorded technical decision. No code.
-- **Build:** the change exists in the codebase and matches the accepted scope.
-- **Verify:** the change is shown to work and shown to be safe to merge. Produces test results and review findings, not fixes applied by stealth.
-- **Ship:** the change reaches users, is documented, and leaves a durable record.
-
-Choose the stage from what the request is missing, not from what is most fun to do next. A request to "add caching" with no written scope is Define work even though it sounds like Build work.
+- **Define:** requirements, fit-gap (standard capability versus missing behavior), decisions and acceptance.
+- **Build:** version-controlled application changes and repeatable setup.
+- **Verify:** calculation, permission, workflow, migration and acceptance evidence.
+- **Ship:** demo or production delivery, operating instructions and maintenance ownership.
 
 ## Commands
 
+Invoke as `$pankit <command> <request>`, or `$pankit` for next-step guidance.
+
 | Command | Category | Description | Reference |
 |---|---|---|---|
-| `spec [feature]` | Define | Write the problem, users, acceptance criteria, and non-goals | [reference/spec.md](reference/spec.md) |
-| `plan [spec]` | Define | Sequence an accepted spec into phases with owners and risks | [reference/plan.md](reference/plan.md) |
-| `design [subsystem]` | Define | Choose and record the technical shape and its trade-offs | [reference/design.md](reference/design.md) |
-| `code [plan]` | Build | Implement an accepted plan against existing conventions | [reference/code.md](reference/code.md) |
-| `test [target]` | Verify | Write and run the tests that prove the change | [reference/test.md](reference/test.md) |
-| `review [diff]` | Verify | Review a diff, branch, or PR and rank findings by severity | [reference/review.md](reference/review.md) |
-| `docs [target]` | Ship | Reconcile the documentation the change owes | [reference/docs.md](reference/docs.md) |
-| `release [component]` | Ship | Bump, changelog, verify, tag, publish | [reference/release.md](reference/release.md) |
-| `retro [milestone]` | Ship | Capture what the work taught and what becomes convention | [reference/retro.md](reference/retro.md) |
+| `spec [request]` | Define | Explain requirements and map the business workflow to ERPNext | [reference/spec.md](reference/spec.md) |
+| `plan [request]` | Define | Sequence setup, customization, migration, demo and handover | [reference/plan.md](reference/plan.md) |
+| `design [request]` | Define | Compare standard configuration and custom app designs | [reference/design.md](reference/design.md) |
+| `code [request]` | Build | Implement and verify maintainable sankaku_erp changes | [reference/code.md](reference/code.md) |
+| `test [request]` | Verify | Prove calculations, permissions, migrations and customer scenarios | [reference/test.md](reference/test.md) |
+| `review [request]` | Verify | Review business correctness and Frappe upgrade risks | [reference/review.md](reference/review.md) |
+| `docs [request]` | Ship | Write operator, demo and maintainer instructions | [reference/docs.md](reference/docs.md) |
+| `release [request]` | Ship | Rehearse or execute a scoped deployment with recovery evidence | [reference/release.md](reference/release.md) |
+| `retro [request]` | Ship | Capture implementation lessons and support improvements | [reference/retro.md](reference/retro.md) |
 
-Routing:
+No argument: [reference/routing.md](reference/routing.md). Setup/MCP: [reference/erpnext-platform.md](reference/erpnext-platform.md) and [reference/mcp-integration.md](reference/mcp-integration.md). Data/schema migration: [reference/migration.md](reference/migration.md). Demo/handover: [reference/demo-operations.md](reference/demo-operations.md).
 
-- **No argument:** read [routing.md](reference/routing.md) and present its context-aware menu; never auto-run a command.
-- **Explicit or clearly implied command:** load its reference and follow it. Ask once if two commands fit.
-- **Otherwise:** treat the request as ordinary delivery work and enter at the earliest stage that is missing its artifact. Implementation with no written scope enters at `spec`; a narrow fix to existing code proceeds directly, offering `spec` afterward rather than blocking on it.
+Use existing document paths; otherwise customer context belongs in `docs/erpnext/`, execution plans in `plans/`. Keep raw customer data, credentials and backups out of Git. Scoped fixes can record assumptions and tests in a short report instead of a full document set.
 
-**Pin / Unpin:** `node .agents/skills/pankit/scripts/pin.mjs <pin|unpin> <command>` creates or removes a standalone `$<command>` shortcut. Report the script's result concisely; relay stderr verbatim on error.
-
-**Hooks:** `$pankit hooks <on|off|status|ignore-rule|ignore-file|ignore-value|reset>` manages the post-edit hook for this project. Load [reference/hooks.md](reference/hooks.md) when the user invokes it with any argument.
-
-**Doctor:** `$pankit doctor` reports and repairs drift between this project's PanKit artifacts and what this version reads. Load [reference/doctor.md](reference/doctor.md) when the user invokes it, or when they ask what is out of date. A `CONTEXT_STALE` directive in Setup's output is the cheap subset of the same report; act on it there per its own instructions rather than running doctor unasked.
-
-**Never repair drift as a side effect of a delivery task.** A `CONTEXT_STALE` finding is reported, not acted on, unless the user asks. The one exception is a finding marked `auto`, which the next write to that file performs anyway.
+**Pin / Unpin:** `node .agents/skills/pankit/scripts/pin.mjs <pin|unpin> <command>` manages optional shortcuts. Retain `hooks` and `doctor` for explicit legacy PanKit maintenance only: [reference/hooks.md](reference/hooks.md), [reference/doctor.md](reference/doctor.md). Doctor checks PanKit artifacts, not ERPNext health. Do not recommend public `pankit update` for this custom kit.

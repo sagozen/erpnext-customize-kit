@@ -1,6 +1,6 @@
 # Repository Guidelines
 
-PanKit is a skeleton for a single-skill, many-command agent skill package covering the software delivery lifecycle. One user-invocable skill, `pankit`, carries 9 commands. The architecture works as shipped; the command references under `skill/reference/` are placeholders to be replaced.
+PanKit is the Sankaku ERPNext implementation kit for made-to-measure curtain projects. One user-invocable skill, `pankit`, carries 9 commands. Read `docs/getting-started-vi.md` for onboarding and `docs/erpnext-kit-architecture.md` for ownership boundaries. Keep business guidance Vietnamese-first, customer rules explicit, and Frappe APIs version-verified.
 
 ## Project Structure & Module Organization
 

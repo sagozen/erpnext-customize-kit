@@ -2,7 +2,7 @@
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "pankit",
   "metadata": {
-    "description": "Software delivery lifecycle skills for AI harnesses. 1 skill, 9 commands, one reference file per stage."
+    "description": "ERPNext implementation skills for Sankaku curtain projects. 1 skill with 9 commands for requirements, customization, migration, testing and handover."
   },
   "owner": {
     "name": "PanKit",
@@ -11,7 +11,7 @@
   "plugins": [
     {
       "name": "pankit",
-      "description": "Software delivery lifecycle skills. 1 skill with 9 commands (/pankit spec, /pankit code, /pankit review, etc.), one reference file per stage.",
+      "description": "ERPNext implementation skills for Sankaku curtain projects. 1 skill with 9 commands for requirements, customization, migration, testing and handover.",
       "version": "0.1.0",
       "author": {
         "name": "PanKit",
@@ -21,13 +21,11 @@
       "category": "workflow",
       "homepage": "https://github.com/pankit/pankit-community",
       "tags": [
-        "sdlc",
-        "workflow",
-        "spec",
-        "testing",
-        "release",
+        "erpnext",
+        "frappe",
+        "curtains",
         "skills",
-        "commands"
+        "workflow"
       ]
     }
   ]

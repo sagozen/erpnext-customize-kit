@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "erpnext-dev": {
+      "command": "node",
+      "args": [
+        "--env-file=/ABSOLUTE/PRIVATE/PATH/erpnext-dev.env",
+        "/ABSOLUTE/PATH/erpnext-mcp-server/build/index.js"
+      ]
+    }
+  }
+}

@@ -81,12 +81,12 @@ describe('OpenAI plugin staging', () => {
 
     assert.equal(manifest.skills, './skills/');
     assert.deepEqual(manifest.author, {
-      name: 'Renaissance Geek Inc',
+      name: 'Paul Bakaus',
       url: 'https://pankit.style',
     });
     assert.equal('email' in manifest.author, false);
-    assert.equal(manifest.interface.shortDescription, 'Design and refine interfaces');
-    assert.equal(manifest.interface.category, 'Creativity');
+    assert.equal(manifest.interface.shortDescription, 'Implement ERPNext for curtain businesses');
+    assert.equal(manifest.interface.category, 'Developer Tools');
     assert.deepEqual(hooks, buildCodexPluginHooksManifest());
     assert.match(hooks.hooks.PostToolUse[0].hooks[0].command, /\$\{PLUGIN_ROOT\}/);
     assert.doesNotMatch(hooks.hooks.PostToolUse[0].hooks[0].command, /CLAUDE_PLUGIN_ROOT/);

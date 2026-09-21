@@ -1,85 +1,69 @@
-# PanKit
+# PanKit ERPNext cho Sankaku
 
-Agent skills for the software delivery lifecycle. One skill, nine commands, one reference file per stage.
+Kit triển khai ERPNext ngành rèm cho dev kiêm người điều phối mới làm ERP. One skill, nine commands: giữ tên `pankit`, bổ sung tư vấn nghiệp vụ, phát triển `sankaku_erp`, migration, demo và bàn giao bằng tiếng Việt dễ hiểu.
 
-**This repository is a skeleton.** Every command reference under `skill/reference/` is a placeholder that shows the shape without the substance. Replace them with your own instructions. The routing, the build, and the tests around them are real and working.
+**Bắt đầu tại [hướng dẫn cài từng bước](docs/getting-started-vi.md).** Kit chứa skills và bộ cài; ERPNext site và app khách hàng được xây dựng trong project riêng.
 
-## What it is
+## Cài vào project
 
-Most skill collections spread one capability per top-level skill, and the `/` menu fills up fast. PanKit uses the opposite shape: a single user-invocable skill named `pankit`, with sub-commands underneath it.
-
-```
-/pankit spec      write the problem, users, acceptance criteria, non-goals
-/pankit plan      sequence an accepted spec into phases
-/pankit design    choose and record the technical shape
-/pankit code      implement against existing conventions
-/pankit test      write and run the tests that prove the change
-/pankit review    rank findings on a diff by severity
-/pankit docs      reconcile the documentation the change owes
-/pankit release   bump, changelog, verify, tag, publish
-/pankit retro     capture what the work taught
-```
-
-Typing `/pankit` with no argument gets a context-aware menu instead of a wall of options.
-
-## Install
+Trong checkout này, với Git, Node từ 22.18 và Bun:
 
 ```bash
-npx pankit skills install
+bun install --frozen-lockfile
+bun run build:release
+node scripts/install-erpnext-kit.mjs --project /absolute/path/to/sankaku_erp --dry-run
+node scripts/install-erpnext-kit.mjs --project /absolute/path/to/sankaku_erp
 ```
 
-Or use it as a Claude Code plugin from `.claude-plugin/marketplace.json`.
+Thay đường dẫn bằng project đã tồn tại. Bộ cài hỗ trợ Claude Code/Codex, từ chối ghi đè skill đã sửa và không đổi config toàn cục. Bỏ bước Bun khi dùng provider artifacts đã build. Không dùng bản npm công khai để cập nhật kit custom này.
 
-## Repository layout
+Mở session trong project vừa cài:
 
-| Path | What lives there |
+```text
+/pankit spec <yêu cầu khách>    # Claude Code
+$pankit spec <yêu cầu khách>   # Codex
+```
+
+## Nine commands
+
+| Lệnh | Kết quả |
 |---|---|
-| `skill/SKILL.src.md` | Frontmatter, shared rules, and the command router table. The single source the providers compile from. |
-| `skill/reference/` | One markdown file per command, loaded only when that command runs. |
-| `skill/scripts/` | Executable helpers the skill may call, including `context.mjs` and `pin.mjs`. |
-| `skill/agents/` | Subagent definitions shipped alongside the skill. |
-| `scripts/build.js` | Compiles `skill/` into per-provider output under `dist/`. |
-| `scripts/lib/transformers/` | The provider matrix and the transform factory. |
-| `cli/` | The `pankit` npm CLI. |
-| `tests/` | Build orchestration, provider transforms, and routing contracts. |
+| `spec` | Giải thích nghiệp vụ, yêu cầu, fit-gap và nghiệm thu |
+| `plan` | Kế hoạch setup, custom, migration, demo và bàn giao |
+| `design` | Phương án, đánh đổi và quyết định chuẩn/custom |
+| `code` | Code sankaku_erp, cấu hình có source và tests |
+| `test` | Kiểm tra công thức, quyền, chứng từ, import, UAT |
+| `review` | Rủi ro nghiệp vụ/nâng cấp và bằng chứng còn thiếu |
+| `docs` | Hướng dẫn người dùng, demo và vận hành |
+| `release` | Diễn tập/triển khai đúng môi trường với phục hồi |
+| `retro` | Bài học và cải tiến triển khai/bảo trì |
 
-Generated provider output lands in `.claude/`, `.cursor/`, `.codex/`, and `.agents/`. Those directories are artifacts, not authoring surfaces. Edit `skill/` and rebuild.
+Chỉ `/pankit` hoặc `$pankit` để chọn việc tiếp theo. Agent tiếp tục các bước đã được cho phép; chỉ hỏi quyết định nghiệp vụ hoặc quyền truy cập còn thiếu.
 
-## Build
+## Hướng dẫn
+
+- [Cài kit, Frappe skills và tạo app ban đầu](docs/getting-started-vi.md)
+- [Kết nối ERPNext MCP](docs/mcp-setup-vi.md)
+- [Triển khai dự án rèm đến vận hành](docs/curtain-delivery-playbook-vi.md)
+- [Prompt và mẫu hồ sơ khách](docs/customer-workbook-vi.md)
+- [Kiến trúc và bảo trì kit](docs/erpnext-kit-architecture.md)
+- [Nghiệp vụ và công thức minh họa](skill/reference/curtain-domain.md)
+- [Chuyển sang ngành khác](skill/reference/domain-adaptation.md)
+
+Công thức minh họa phải được khách xác nhận. Prompt không thay thế phân quyền thực tế trên Frappe. Build kit thành công chưa chứng minh ứng dụng khách đã nghiệm thu.
+
+## Phát triển kit
+
+`skill/` là source; `.claude/`, `.cursor/`, `.codex/`, `.agents/`, `plugin/` là generated output. `integrations/erpnext-lock.json` ghim upstream. Không sửa generated files trực tiếp.
 
 ```bash
-bun run build            # compile dist/ without syncing the root harness dirs
-bun run build:release    # compile and sync root harness dirs plus plugin/
-bun run test             # unit tests plus the plugin loader check
+bun run build
+bun run build:release
+bun run test
 ```
 
-Source files use placeholders that get replaced per provider: `{{model}}`, `{{config_file}}`, `{{ask_instruction}}`, `{{command_prefix}}`, `{{available_commands}}`, `{{scripts_path}}`, and `{{command_hint}}`.
-
-## Adding a command
-
-A command is registered in four places. The test suite fails if they disagree.
-
-1. Create `skill/reference/<command>.md`.
-2. Add a row to the router table in `skill/SKILL.src.md`.
-3. Add its description and argument hint to `skill/scripts/command-metadata.json`.
-4. Add its category to `SKILL_CATEGORIES` in `scripts/lib/skill-categories.js`.
-
-Then add it to `VALID_COMMANDS` in `skill/scripts/pin.mjs` if it should be pinnable as a standalone shortcut, and to `PANKIT_SUB_COMMANDS` in `scripts/lib/utils.js` if it should appear in generated next-step suggestions.
-
-The command count in this README, `AGENTS.md`, and both plugin manifests is validated against the router table at build time. Update them together.
-
-## Writing a command reference
-
-The placeholders share one shape, and it is worth keeping:
-
-- **When this runs.** The condition that selects this command over its neighbors.
-- **Read first.** What to load before acting, so the model does not guess.
-- **Steps.** Numbered and imperative.
-- **What this produces.** The artifact, named.
-- **Handoff.** Which command picks up next, and what this one must not do.
-
-Two rules earn their keep. Write to the model in second person, not about the model. And keep the file short, because it is loaded in full on every invocation.
+Xem [Developer Guide](docs/DEVELOP.md) và [Harnesses](docs/HARNESSES.md). Visual/browser helpers cũ giữ để tương thích nhưng không chạy mặc định trong workflow ERPNext.
 
 ## License
 
-Apache 2.0. See `NOTICE.md` for attribution.
+Apache 2.0; xem `NOTICE.md`. External Frappe skills và MCP giữ license upstream riêng.

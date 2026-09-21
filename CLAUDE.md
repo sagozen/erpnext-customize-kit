@@ -2,9 +2,7 @@
 
 ## What this repository is
 
-PanKit is a **skeleton** for a single-skill, many-command agent skill package covering the software delivery lifecycle. The architecture is real and working. The command content is deliberately placeholder: every file in `skill/reference/` named after a command is a template with the section shape filled in and the substance left to the author.
-
-When someone asks you to "add the real spec command", they mean replace the body of `skill/reference/spec.md`, not restructure the repository.
+PanKit is the Sankaku ERPNext implementation kit for made-to-measure curtain businesses. Read `docs/getting-started-vi.md` and `docs/erpnext-kit-architecture.md`. The nine command references are real delivery instructions. Keep customer rules separate from framework guidance, explain business terms in Vietnamese and verify APIs against the installed version. This repository contains the agent kit; customer application code belongs in a separate `sankaku_erp` app.
 
 ## Architecture
 
@@ -72,7 +70,7 @@ Adding a provider back is a matter of adding its config object and its export. T
 
 ### Generated provider output policy
 
-`.claude/`, `.cursor/`, `.codex/`, and `.agents/` are **intentionally committed**. They are what an installer reads. They are generated distribution artifacts, not authoring surfaces: edit `skill/`, `scripts/`, `cli/`, and `tests/`, then rebuild. Keep regenerated provider permutations out of feature changes unless the change is itself a release or build-system change.
+`.claude/`, `.cursor/`, `.codex/`, and `.agents/` are **intentionally committed**. They are what an installer reads. They are generated distribution artifacts, not authoring surfaces: edit `skill/`, `scripts/`, `cli/`, and `tests/`, then rebuild. Regenerate provider outputs when kit instructions change so direct project installs receive the same verified guidance.
 
 Local state files inside harness directories (for example `.claude/settings.local.json`) are gitignored.
 

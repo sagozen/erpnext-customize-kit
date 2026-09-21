@@ -1,39 +1,15 @@
 # pankit
 
-Agent skills for the software delivery lifecycle. One skill, nine commands, one reference file per stage.
+ERPNext delivery guidance for Sankaku curtain projects. One skill, nine commands: spec, plan, design, code, test, review, docs, release and retro.
 
-This package ships a skeleton. The command references are placeholders meant to be replaced with your own instructions; the routing, build, and tests around them work as shipped.
+## Install the custom kit
 
-## Install the skills
+Use the checked-out Sankaku edition and its `scripts/install-erpnext-kit.mjs` with an existing project path. Follow `docs/getting-started-vi.md` in that checkout. The public npm package remote install/update endpoint is not a verified distribution channel for this edition.
 
-```bash
-npx pankit skills install
-```
+The kit supports Claude Code and Codex, explains business terms in Vietnamese and keeps application code in sankaku_erp. It does not provision ERPNext or include customer credentials.
 
-Installs the compiled skill into whichever agent harnesses it finds: Claude Code, Cursor, and Codex.
+## Documentation
 
-## Commands
-
-Once installed, one skill named `pankit` carries nine sub-commands:
-
-| Stage | Commands |
-|---|---|
-| Define | `spec`, `plan`, `design` |
-| Build | `code` |
-| Verify | `test`, `review` |
-| Ship | `docs`, `release`, `retro` |
-
-Type `/pankit` with no argument for a context-aware menu, or `/pankit spec add rate limiting` to go straight to a stage.
-
-## CLI
-
-```bash
-npx pankit skills install     # install the skills
-npx pankit --help             # show all commands
-```
-
-## Source
-
-https://github.com/pankit/pankit-community
+See the repository README for setup, pinned Frappe skills, MCP configuration, discovery, demo, migration and operations. The existing CLI identity is preserved; no package publication is implied by this refactor.
 
 Apache 2.0.

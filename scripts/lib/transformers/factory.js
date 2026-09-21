@@ -83,7 +83,9 @@ function buildOpenAIMetadata(skill) {
     interface: {
       display_name: displayName,
       short_description: summarizeDescription(skill.description),
-      default_prompt: `Use ${displayName} to redesign, critique, audit, or polish this frontend.`,
+      default_prompt: skill.name === 'pankit'
+        ? 'Use $pankit to explain this ERPNext requirement and guide its implementation for the active business domain.'
+        : `Use $${skill.name} to help with this task.`,
     },
   };
 }

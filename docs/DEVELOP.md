@@ -2,6 +2,13 @@
 
 Documentation for contributors to PanKit.
 
+For the Sankaku ERPNext edition, start with [getting-started-vi.md](getting-started-vi.md)
+and [erpnext-kit-architecture.md](erpnext-kit-architecture.md). The nine commands
+now carry ERPNext delivery guidance. Install this edition with
+`scripts/install-erpnext-kit.mjs`; the public remote CLI endpoint is not its
+verified distribution channel. Test the local installer with
+`node --test tests/erpnext-kit.test.mjs` after regenerating provider output.
+
 ## Architecture
 
 The skill at `skill/` is transformed into provider-specific formats by a config-driven factory. Each provider is defined as a config object in `scripts/lib/transformers/providers.js` -- adding a new provider requires only a new config entry.

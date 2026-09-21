@@ -1,38 +1,28 @@
-# release: ship it deliberately
-
-> **PLACEHOLDER.** This file shows the shape a PanKit command reference takes. Replace the content with your own instructions; keep the section headings so the router, the build, and `skill-reference.test.mjs` keep working.
+# release: Rehearse or execute a scoped deployment with recovery evidence
 
 Stage: **Ship**. Invoked as `/pankit release`.
 
 ## When this runs
 
-A set of merged, reviewed, tested changes is ready to reach users.
+Rehearse or execute a scoped deployment with recovery evidence when requested or needed to complete authorized ERPNext work.
 
 ## Read first
 
-- The component being released and its version manifest. Components version independently unless the project says otherwise.
-- The merged changes since the last release of that component.
-- The release checks the repository enforces: clean tree, build reproducibility, changelog presence, tag availability.
+Read environment, authorization, pinned versions and passing tests/UAT. Load [demo-operations.md](demo-operations.md) and [migration.md](migration.md) for cutover/schema changes.
 
 ## Steps
 
-1. Confirm the working tree is clean and the branch is current. A release from a dirty tree is not reproducible.
-2. Bump only the component that changed.
-3. Write the changelog entry for users: what they will notice or act on. Leave internal refactors and dependency bumps out.
-4. Run the full verification the project requires and read the output rather than assuming it passed.
-5. Tag, publish, and report exactly what went out and where.
+1. Identify demo, rehearsal or production. Record site, company, app revision, versions, downtime and permitted actions. Reuse authorization; do not infer permission to publish or mutate another environment.
+2. Prepare exact runbook, rollback conditions, backup locations and restore evidence. Block production cutover if required tests, acceptance or recovery checks are absent; continue independent preparation.
+3. Rehearse on a sanitized staging copy. Check stock/accounting reconciliation and roles. Preserve pre-cutover snapshot and matching old application artifacts together.
+4. Control/freeze production writes, take verified backups including files and required encryption configuration, deploy selected revision, migrate, build assets/restart as hosting requires and smoke-test.
+5. Follow rehearsed recovery if checks fail. A Git revert does not undo a database migration. Account for post-backup writes before restoring.
+6. Resume traffic/jobs after checks. Record commands, versions, results, incidents, support and acceptance. Bump/tag/publish only the component explicitly being released, never the kit merely because a demo was requested.
 
 ## What this produces
 
-A version bump, a changelog entry, a tag, and a published artifact.
+Deployment/rehearsal record with evidence and recovery status. When blocked, a prepared runbook and exact unmet conditions.
 
 ## Handoff
 
-`retro` captures what the cycle taught once the release has settled.
-
-## Notes for the author of this file
-
-- Write instructions to the model, not documentation about the model. Second person, imperative.
-- Say what to do and what not to do. A rule with no counter-case gets read as a suggestion.
-- Keep it loadable. This file is read in full every time the command runs, so length costs the user money on every invocation.
-- Reference other files by relative path so the build can rewrite them per provider.
+Follow the agreed support period and capture lessons with retro. Do not start indefinite monitoring unless requested.

@@ -2,24 +2,26 @@
 
 # Product
 
-> **PLACEHOLDER.** This is the durable product context every command reads before doing work. Replace it with the truth about your project. `/pankit` reads this file at the start of a session; a stale one steers every command that follows.
-
 ## Platform
 
 web
 
 ## Users
 
-Who uses this, and what situation they are in when they reach for it. Name the role and the moment, not a demographic.
+A solo technical founder and developers implementing ERPNext for made-to-measure curtain businesses. The founder needs Vietnamese business explanations, practical choices, setup and customer demo guidance.
 
 ## Product Purpose
 
-What the product does, and how you would know it worked. Two sentences.
+Turn client requirements into a maintainable ERPNext implementation through reusable agent instructions, version-checked Frappe references and optional MCP access. Success means a developer can install the kit, specify an order workflow, implement sankaku_erp, verify it and hand it over with operating evidence.
 
 ## Principles
 
-The decisions that are already made, so no command relitigates them. Three to five, each stated as a rule rather than a value.
+- Explain business meaning before implementation detail.
+- Prefer standard ERPNext behavior where it meets accepted requirements.
+- Keep customer formulas explicit, versioned and independently tested.
+- Keep app code reproducible; do not edit upstream core by default.
+- Distinguish kit verification from customer-site acceptance.
 
 ## Constraints
 
-The things that are not negotiable: platform targets, compliance, performance budgets, existing contracts.
+Preserve the pankit command and provider contracts. Support Claude Code and Codex. Do not ship customer data or credentials. ERPNext provisioning and the customer app are separate deliverables, not included in this kit repository.

@@ -1,6 +1,6 @@
 {
   "name": "pankit",
-  "description": "Software delivery lifecycle skills. 1 skill with 9 commands (/pankit spec, /pankit code, /pankit review, etc.), one reference file per stage.",
+  "description": "ERPNext implementation skills for Sankaku curtain projects. 1 skill with 9 commands for requirements, customization, migration, testing and handover.",
   "version": "0.1.0",
   "author": {
     "name": "PanKit",

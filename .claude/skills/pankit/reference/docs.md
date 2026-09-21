@@ -1,38 +1,28 @@
-# docs: reconcile what the change owes the reader
-
-> **PLACEHOLDER.** This file shows the shape a PanKit command reference takes. Replace the content with your own instructions; keep the section headings so the router, the build, and `skill-reference.test.mjs` keep working.
+# docs: Write operator, demo and maintainer instructions
 
 Stage: **Ship**. Invoked as `/pankit docs`.
 
 ## When this runs
 
-Behavior, setup, commands, configuration, architecture, or a public contract changed.
+Write operator, demo and maintainer instructions when requested or needed to complete authorized ERPNext work.
 
 ## Read first
 
-- The diff, so documentation follows what shipped rather than what was intended.
-- The existing documentation layout, discovered from the repository instructions and the root README rather than assumed.
-- The machine-owned sources (schemas, manifests, generated references) that should be linked instead of copied.
+Read existing navigation and actual implementation. Use [demo-operations.md](demo-operations.md) for role instructions and [migration.md](migration.md) for import/runbook changes.
 
 ## Steps
 
-1. Decide first whether documentation is owed at all. Internal refactors and completed phases usually owe nothing.
-2. Find the smallest owning surface and update that, rather than adding a new page beside it.
-3. Read the document before editing it, so the change fits the voice and structure already there.
-4. Verify every claim against source, tests, or live state after writing. A confident wrong sentence is worse than no sentence.
-5. Check links and code samples resolve.
+1. Update the smallest owning surface. Explain business terms and retain exact ERPNext labels users need to find.
+2. For each role document task, prerequisites, inputs, steps, expected result and correction path. Explain who can edit, approve, submit, cancel and amend.
+3. Document clean installation, pinned versions, configuration ownership, migration/reconciliation, credential provisioning without values, backups and tested restore.
+4. Create demo/UAT scripts mapped to requirements. Label illustrative data and unfinished functionality; do not imply absent automation exists.
+5. Record support ownership, maintenance, upgrade rehearsal and known limitations. Link schemas/tests instead of copying them.
+6. Verify links, commands and claims. Mark procedures not run on the customer's environment unverified.
 
 ## What this produces
 
-Updated documentation on the smallest owning surface, with claims verified against the code.
+Operator guide, demo/UAT instructions and maintainer runbook proportional to the change.
 
 ## Handoff
 
-`release` assumes the documentation matches what is about to ship.
-
-## Notes for the author of this file
-
-- Write instructions to the model, not documentation about the model. Second person, imperative.
-- Say what to do and what not to do. A rule with no counter-case gets read as a suggestion.
-- Keep it loadable. This file is read in full every time the command runs, so length costs the user money on every invocation.
-- Reference other files by relative path so the build can rewrite them per provider.
+Use release for an identified environment; documents alone do not prove cutover.

@@ -1,38 +1,29 @@
-# design: choose the technical shape and record why
-
-> **PLACEHOLDER.** This file shows the shape a PanKit command reference takes. Replace the content with your own instructions; keep the section headings so the router, the build, and `skill-reference.test.mjs` keep working.
+# design: Compare standard configuration and custom app designs
 
 Stage: **Define**. Invoked as `$pankit design`.
 
 ## When this runs
 
-A change has more than one viable architecture, or a decision will be expensive to reverse later.
+Compare standard configuration and custom app designs when requested or needed to complete authorized ERPNext work.
 
 ## Read first
 
-- The spec or plan that motivated the decision.
-- The existing module boundaries, interfaces, and data model the change has to live inside.
-- Any prior decision record on the same subsystem, so this one supersedes it explicitly instead of contradicting it silently.
+Read requirements, existing DocTypes and installed Frappe source/version. Use [erpnext-platform.md](erpnext-platform.md), the active domain and [migration.md](migration.md) when changing data contracts.
 
 ## Steps
 
-1. State the decision to be made as a question with a scope. A vague question produces a vague record.
-2. List the options that are genuinely on the table, including the one where nothing changes.
-3. For each option, give the mechanism, the cost, and the failure mode. An option with no downside listed has not been examined.
-4. Choose one and say why the trade-off is acceptable for this project, not in general.
-5. Record the consequences: what becomes easier, what becomes harder, and what would make you revisit this.
+1. State the business decision using a representative transaction. Evaluate standard configuration before new fields or DocTypes.
+2. Compare viable options by fit, effort, user steps, reporting, upgrades, support and reversibility. Recommend in Vietnamese and record the customer's choice.
+3. For curtains compare order-specific measurement/configuration linked to sales lines with catalog Items/Variants. Use variants for bounded reusable attributes; explain Item/BOM growth before making every dimension a SKU.
+4. Separate quote estimate, production BOM and actual consumption. Explain BOM (bill of materials, định mức nguyên vật liệu) with the agreed order. Select Manufacturing, Subcontracting or purchase/resale from the actual supply model.
+5. Define links, child ownership, revision snapshots, lifecycle, roles, units/precision, validation and retry identity. Curtain Measurement and similar names are proposed custom DocTypes, not built-ins.
+6. Keep code in sankaku_erp. Choose filtered fixtures or exported customizations with one owner per record. Verify version-specific hooks. Do not assume Server Scripts are universally available or use them as the portable core pricing engine.
+7. Record migration, testing and recovery implications.
 
 ## What this produces
 
-A decision record: Context, Options, Decision, Consequences, Revisit when.
+A decision record and data contract with options, decision, consequences and revisit conditions.
 
 ## Handoff
 
-`plan` sequences the chosen shape into phases; `code` implements it. The record stays with the repository, not in the conversation.
-
-## Notes for the author of this file
-
-- Write instructions to the model, not documentation about the model. Second person, imperative.
-- Say what to do and what not to do. A rule with no counter-case gets read as a suggestion.
-- Keep it loadable. This file is read in full every time the command runs, so length costs the user money on every invocation.
-- Reference other files by relative path so the build can rewrite them per provider.
+Pass to plan or continue authorized implementation with code.

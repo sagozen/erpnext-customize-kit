@@ -1,38 +1,28 @@
-# test: prove the change behaves as specified
-
-> **PLACEHOLDER.** This file shows the shape a PanKit command reference takes. Replace the content with your own instructions; keep the section headings so the router, the build, and `skill-reference.test.mjs` keep working.
+# test: Prove calculations, permissions, migrations and customer scenarios
 
 Stage: **Verify**. Invoked as `$pankit test`.
 
 ## When this runs
 
-After implementation, or first when working test-driven.
+Prove calculations, permissions, migrations and customer scenarios when requested or needed to complete authorized ERPNext work.
 
 ## Read first
 
-- The acceptance criteria from the spec. They are the test list; treat anything not covered as a gap to report.
-- The existing test suites and how they are run, including which suites are opt-in and what each one costs.
-- The behavior that changed, so the narrowest useful suite can run first.
+Read accepted criteria, customer-approved worked examples, role matrix and test setup. Load [curtain-domain.md](curtain-domain.md), [migration.md](migration.md) or [demo-operations.md](demo-operations.md) for relevant checks.
 
 ## Steps
 
-1. Run the narrowest suite that covers the changed behavior before broadening to lint, typecheck, and build.
-2. Write a failing test before the fix when reproducing a bug, so the test is known to detect the defect.
-3. Cover the boundary and the error path, not only the case the feature was written for.
-4. Report failures with their output. Never weaken, skip, or delete a test to make a run green.
-5. State what remains uncovered. An honest gap is more useful than a coverage number.
+1. Use an isolated test site and the installed Frappe runner. Verify help/configuration. Run a focused module, then app tests and fresh-install/upgrade checks for shared contracts.
+2. Cover unit conversion, invalid dimensions, usable fabric width/orientation, fullness, pattern repeat, split panels, rounding boundaries, minimum charges and price revisions. Derive expected results independently of the function under test.
+3. Exercise save/submit/cancel/amend and UI/API access as each real role. Check unauthorized reads/exports, company isolation and server rejection of client-tampered totals.
+4. Test partial delivery/payment, remeasurement after approval, shortages, subcontracting where used, rework and returns. Verify stock/financial effects against the agreed process.
+5. Test duplicate imports, missing links, rejected rows, interrupted execution and reconciliation. Test old-site upgrades, a second migrate and restore rehearsal.
+6. Record requirement → scenario → command/manual steps → expected → actual → evidence. Separate automated tests, manual UAT and not-run checks. Never substitute mocked Bench/MCP output for live integration evidence.
 
 ## What this produces
 
-Test files, a record of the commands run, and a pass/fail report naming any remaining gap.
+Tests and acceptance report with pass/fail/not-run, evidence, defects and customer sign-off status.
 
 ## Handoff
 
-`review` reads these results as evidence. A red suite blocks `release`.
-
-## Notes for the author of this file
-
-- Write instructions to the model, not documentation about the model. Second person, imperative.
-- Say what to do and what not to do. A rule with no counter-case gets read as a suggestion.
-- Keep it loadable. This file is read in full every time the command runs, so length costs the user money on every invocation.
-- Reference other files by relative path so the build can rewrite them per provider.
+Failures return to code. A passing kit build never clears a customer site for production.
