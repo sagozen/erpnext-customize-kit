@@ -12,19 +12,27 @@ Keep only rules needed to implement and judge the slice:
 |---|---|
 | Rule ID | Stable within the feature; actor, trigger/state, inputs/units, expected business outcome and relevant failure behavior |
 | Acceptance ID | Observable result tied to a rule, with an independently checked example where quantities or money matter |
+| Operating criteria | When relevant: workload/data volume, concurrent users, response or batch window, measurement conditions, customer-agreed threshold and verification; link shared recovery targets |
 | ERPNext mapping | Standard/configuration/app/integration candidate, evidence against the installed version, consequential design choice |
 | Open decision | What is unknown, who can decide, affected work and recommendation with trade-off |
+
+Never invent operating thresholds or accept “fast” as a measurable criterion. Record an unknown threshold with its decision owner; hold only dependent work.
 
 Keep rule and acceptance IDs stable when wording changes; retire removed IDs rather than reusing them. Acceptance criteria describe promised behavior. Test cases additionally explore boundaries, concurrency and technical failure modes. Use diagrams only when a state or relationship remains hard to explain in prose.
 
 Before calling a slice ready, walk a normal order and the relevant exception: who can act, what changes, what remains historically true, and how the operator recovers. Missing business decisions block only dependent work. Do not choose unconfirmed pricing, material, stock or accounting policies to clear a gate.
+
+For an inherited app without a usable spec, first describe observed behavior with code/configuration/version evidence and mark it as unconfirmed intent. Compare it with client examples and decisions before treating it as an accepted baseline. A spec generated from the same code cannot independently prove that code meets customer needs. Existing behavior and intended behavior may legitimately differ.
+
+For conditional pricing, approvals or revision rules, use a small decision table in the same spec: condition → outcome → exception. For stateful work, record actor → starting state → action → resulting state → side effect/recovery. Add only the rows needed to expose conflicting rules or missing paths; no separate diagram pack.
 
 ## Task card
 
 Give a specialist or a fresh Claude/Codex session a bounded packet:
 
 ```text
-Task / owner / status:
+Task / implementer / reviewer / integration owner / status:
+Next action / agreed checkpoint:
 Outcome and baseline: feature path + accepted revision/decision + rule/AC IDs
 Read: exact source, decisions, app/version/site context, relevant code/tests
 Change boundary: owned files/modules/config; excluded work
@@ -32,14 +40,20 @@ Interfaces/dependencies: inputs, outputs, units, lifecycle, permissions;
   who owns shared schema, fixtures and migration ordering
 Deliver: code/config/tests and operator notes where behavior changes
 Verify: relevant ACs, command or manual procedure, expected result
-Hand back: diff/base/head, results + environment, unresolved gaps, recovery notes
+Hand back: diff/base/head (retain uncommitted diff or its hash), results + environment,
+  unresolved gaps, recovery notes
+Blocked: evidence of attempts, impact, decision owner, next action and independent work
 ```
 
-Ready means inputs and interfaces are sufficient for this task, its required decisions are accepted and access is available. Done means scope is implemented, applicable checks have evidence, required review findings are resolved and remaining UAT/deployment status is explicit. Code review completion is not production completion.
+Ready means inputs and interfaces are sufficient for this task, its required decisions are accepted and access is available. Done means scope is implemented, applicable checks have evidence, required review findings are resolved and remaining UAT/deployment status is explicit. After integration, the integration owner verifies affected cross-task ACs on the combined revision. Code review completion is not production completion.
 
 Split by a reviewable business outcome or a technical dependency with a clear contract. Estimate effort as a range with uncertainty; use a bounded investigation when the API or rule is unknown. A task spanning several unrelated outcomes should be split, not assigned as “customize ERPNext”.
 
 The founder owns priorities, client decisions and integration. Hire a specialist for the risk they can resolve, such as Frappe lifecycle, material planning or accounting reconciliation. AI capability does not transfer business sign-off to the model. Start with one active slice and finish its review before filling a review queue; increase parallel work only when ownership and interfaces are independent. Never edit shared schema/fixtures/migration ordering concurrently without a single owner.
+
+## First delegation trial
+
+Before expanding delegation, trial one accepted slice with a named specialist or fresh session using only the task packet and its linked context. Plan the trial without automatically launching agents or contacting people. Record app/site/version, recipient, reviewer and integration owner; missing inputs remain explicit. Check whether the recipient can start, report blockers, propose contract changes and return reproducible evidence without the original chat. In the existing task/report, record clarification requests caused by packet gaps, interface defects, returns for missing evidence and AC results. Improve the packet from observed failures; mark an unrun trial not-run. Customer UAT remains separate.
 
 ## Change against the baseline
 
@@ -56,6 +70,8 @@ Use a short delta section in the existing feature/issue. Reuse explicit authoriz
 Include the baseline, exact diff or document revision, touched rule/AC IDs, test results/site versions and known gaps. A review may start with missing evidence, but its verdict must name that limitation. Read the actual diff and relevant source; the implementer's summary and another model's approval are not proof.
 
 For implementation review, record each relevant AC's implementation evidence, verification evidence and pass/fail/not-run. For spec/task readiness, check that rules, outcomes and the planned verification are clear; do not demand code or executed tests before implementation. Report a concrete defect with location, trigger, business consequence and the check that would prove the repair. Keep questions, evidence gaps and optional improvements distinct. Deduplicate repeated findings; severity follows impact, never reviewer vote counts.
+
+Keep comparison and test execution in separate columns. Evidence identifies the tested app revision/working diff, relevant configuration and site/version. After changes, mark only affected results stale and recheck them; explain why other results remain applicable. Never attach old green tests to a different calculation or permission rule without that assessment.
 
 Conclude **ready for the stated gate**, **rework required**, or **decision/evidence needed**. Name the gate (spec ready for tasking, code ready to merge, or release readiness). A known defect requiring repair takes precedence; still list missing decisions/evidence. No passing claim for unrun critical checks. Customer UAT and release authorization remain separate.
 

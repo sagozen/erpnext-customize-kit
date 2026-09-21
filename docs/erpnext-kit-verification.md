@@ -1,5 +1,21 @@
 # Verification record, 2026-09-21
 
+## Delegation readiness update
+
+Added measurable operating criteria, task reviewer/integration ownership and blocker reporting, plus a first delegation trial procedure. Shortened the assessment report. No command or dependency added.
+
+- Release build and 13 focused installer/routing/plugin tests passed; 12 regenerated references matched source. Local guide/report links and Git whitespace checks passed.
+- The delegation trial is not-run pending a real accepted slice, app/site context and assigned participants. No live ERPNext or model behavior validation is claimed; earlier full-suite limitations still apply.
+
+## Evidence comparison update
+
+Against baseline `870a871`, existing spec/design/review/shared instructions and the Vietnamese guide were extended. No skill, command, reference file, executable or dependency was added.
+
+- Fresh release build and 13 focused installer/routing/plugin tests passed.
+- Sixteen generated references matched their authored sources; local reference links and Git whitespace checks passed.
+- Independent source review found no actionable defects across six scenarios: missing custom validator with unavailable standard source, demonstrated unauthorized access without a customer spec, reverse-generated spec, tests from an earlier rule revision, units across documents, and a print-label-only change.
+- This is source-level scenario validation, not an executed model evaluation or live ERPNext test. Full-suite limitations below remain unchanged.
+
 ## Lean spec and review update
 
 Against baseline `9d88ac3`, the workflow update changed authored instructions/docs and regenerated provider artifacts. It added no executable behavior, command or dependency.

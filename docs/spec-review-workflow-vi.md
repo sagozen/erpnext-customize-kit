@@ -10,6 +10,7 @@ Khởi đầu với **một phần nghiệp vụ đang làm**, hoàn tất revie
 |---|---|
 | Spec ngắn, quy tắc và tiêu chí nghiệm thu rõ | `spec`, kiểm tra lại bằng `review` |
 | Kiểm tra luồng thiếu, ngoại lệ và quyền | `review` trước khi giao việc và trước khi nhận code |
+| Đối chiếu spec với code và các điểm nối | `review`, có nguồn hai phía và phân biệt chưa tìm thấy với chưa đủ bằng chứng |
 | Task có phạm vi, giao diện và bằng chứng bàn giao | `plan`, thực hiện bằng `code` kèm tests |
 | Đánh giá thay đổi so với điều đã chốt | `review` đề xuất thay đổi; `spec` cập nhật khi được chốt |
 
@@ -29,6 +30,9 @@ Phạm vi / không thuộc phạm vi:
 Quy tắc: ID, người thực hiện, điều kiện/trạng thái, input/đơn vị,
          kết quả, quyền và ngoại lệ liên quan.
 AC: ID → quy tắc → tình huống → kết quả quan sát được.
+Vận hành khi liên quan: lượng dữ liệu/người dùng đồng thời, thời gian chờ
+hoặc khung chạy tác vụ, điều kiện đo, ngưỡng khách chốt và cách kiểm.
+Chưa có ngưỡng: ghi người cần quyết; không tự đặt số.
 ERPNext: phần chuẩn / config / app; bằng chứng phiên bản; lựa chọn/đánh đổi.
 Còn thiếu: câu hỏi, người quyết, phần việc bị ảnh hưởng.
 Thay đổi: chỉ thêm mục trước/sau khi có thay đổi thực sự.
@@ -71,7 +75,8 @@ Nếu đã biết mô hình và thay đổi nhỏ, gộp hai task đầu. Không
 
 ```text
 /pankit plan [feature spec @ revision đã chốt]
-Chia task để tôi giao chuyên gia. Mỗi task có outcome, owner,
+Chia task để tôi giao chuyên gia. Mỗi task có outcome, người làm,
+người review, người tích hợp, trạng thái, việc tiếp theo và mốc kiểm tra đã thống nhất,
 file/module được sửa, interface/đơn vị/quyền, dependency, AC,
 đầu ra, cách kiểm chứng và gói bàn giao. Ghi người chưa phân công.
 Ước lượng theo khoảng và nêu bất định; chưa rõ API thì tách việc xác minh.
@@ -87,6 +92,8 @@ không ghi đè phần của người khác. Khi cần thay đổi interface ho�
 nêu tác động trước; tiếp tục phần độc lập. Bàn giao diff/base/head,
 bảng AC → code → tests → kết quả, môi trường, điều chưa kiểm và rollback.
 ```
+
+Khi bị chặn, người nhận báo: đã thử gì và bằng chứng, ảnh hưởng, ai cần quyết, việc tiếp theo và phần vẫn làm được. Đổi nghiệp vụ/interface dùng phần delta của baseline trước khi sửa contract. Người tích hợp kiểm lại AC xuyên task trên bản đã ghép.
 
 **Đủ để bắt đầu:** quyết định cần cho task đã chốt, interface rõ, có quyền/môi trường cần thiết. **Đủ để nhận code:** phần việc đã làm, có bằng chứng phù hợp, lỗi review đã xử lý. Ghi riêng UAT và triển khai còn thiếu; nhận code không đồng nghĩa khách đã nghiệm thu.
 
@@ -137,3 +144,45 @@ tests và chi phí vận hành. Đưa phương án và khuyến nghị. Chỉ ph
 Khi đã có quyết định, cập nhật spec và task/tests bị ảnh hưởng cùng đợt. Giữ lại bằng chứng cũ nhưng đánh dấu cần kiểm lại nếu rule thay đổi. Không xin duyệt lại từng file cho phần việc đã được cho phép; không dùng sự im lặng của khách làm chấp nhận.
 
 Claude Code dùng `/pankit`, Codex dùng `$pankit`; các nội dung prompt giữ nguyên. Bước tiếp theo: chọn **một** yêu cầu khách đang vướng nhất, viết spec ngắn và chạy review trước khi giao task.
+
+## Review sâu đúng chỗ, tránh tạo thêm việc
+
+Một lỗi nhãn trên phiếu in thường cần kiểm tra nội dung hiển thị và ảnh hưởng liên quan. Đổi công thức, quyền duyệt hay revision cần lần theo server và các chứng từ sử dụng kết quả. Đụng kho, công nợ, migration hoặc ghi hàng loạt thì cần thêm bằng chứng site, đối soát và phục hồi phù hợp bước đang xét. Không yêu cầu diễn tập production chỉ để review bản spec nháp.
+
+Reviewer cần phân biệt **code trông khớp** với **đã chạy thử đạt**. Hai cột riêng giúp bạn không nhận nhầm bằng chứng:
+
+| Rule/AC | Spec mong đợi | Code/config thực tế | Đối chiếu | Test và độ mới | Việc tiếp theo |
+|---|---|---|---|---|---|
+| ID thật | File/section @ revision | File/line @ app revision hoặc cấu hình site | Khớp / khác / không thấy trong phạm vi đã kiểm / thêm hành vi / chưa đủ bằng chứng | Pass/fail/not-run; đã cũ nếu không còn áp dụng | Owner, việc cần làm và điều kiện kiểm lại |
+
+Ví dụ minh họa về cách kết luận, không phải lỗi đã phát hiện trong app của bạn:
+
+| Tình huống | Kết luận có căn cứ |
+|---|---|
+| Không thấy kiểm tra quyền trong app custom | Kiểm tra controller chuẩn, hook và cấu hình site trước; chưa truy cập được thì ghi chưa đủ bằng chứng, không kết luận hệ thống thiếu quyền |
+| Spec tính mét nhưng phiếu đo gửi millimet | Kiểm tra nơi chuyển đổi và giá trị đầu vào/đầu ra; trích nguồn cả hai phía, dùng ví dụ 2.400 mm tương ứng 2,4 m |
+| Form hiển thị số đo mới, báo giá cần bản đã duyệt | Kiểm tra ID revision truyền giữa hai nơi; từng màn hình đúng riêng lẻ chưa chứng minh liên kết đúng |
+| Tests xanh trên commit trước khi sửa quy tắc nhún | Kết quả công thức cũ cần kiểm lại; tests không liên quan có thể giữ nếu giải thích được phạm vi |
+| Code thêm kiểm tra dữ liệu đầu vào | Xác định có thay đổi hành vi đã cam kết không; không coi mọi helper/validation kỹ thuật là scope mới |
+
+Trước khi kết luận “thiếu”, reviewer ghi đã tìm ở đâu và theo đường thực thi nào. Một screenshot không chứng minh API cũng kiểm tra quyền. Một bản báo cáo code sinh ra rồi tự đối chiếu với chính code đó không chứng minh khách muốn hành vi ấy.
+
+Nếu nhận dự án cũ chưa có spec:
+
+```text
+/pankit spec Tiếp quản app tại [đường dẫn], chưa có spec đáng tin.
+Ghi hành vi quan sát được kèm nguồn code/config/version, đánh dấu chưa xác nhận
+ý định nghiệp vụ. Đối chiếu với mẫu đơn và quyết định khách đã có.
+Tách điểm cần khách chốt; không lấy tài liệu sinh từ code làm bằng chứng
+độc lập rằng code đáp ứng yêu cầu. Chỉ mô tả phần tôi cần tiếp quản.
+```
+
+Với quy tắc nhiều nhánh, thêm bảng ngay trong spec: **điều kiện → kết quả → ngoại lệ**. Với duyệt/hủy/đo lại: **ai → trạng thái trước → hành động → trạng thái sau → tác động/cách sửa sai**. Nếu vài câu đã đủ rõ thì không cần bảng hoặc sơ đồ.
+
+Khi gửi review, ghi chính xác revision và cả diff chưa commit nếu có. Sau khi sửa, yêu cầu kiểm lại các finding và tests bị ảnh hưởng. Bản review cũ không tự áp dụng cho code mới. Bạn nhận một danh sách hành động có owner và điều kiện đóng, thay vì một đề nghị “cải thiện kiến trúc” không có điểm kết thúc.
+
+## Chạy thử một lần giao việc
+
+Chọn một phần nghiệp vụ đã chốt, ghi app/site/version, người nhận, reviewer và người tích hợp. Giao task cùng các liên kết cho người hoặc session chưa biết lịch sử chat. Chỉ thực hiện khi phạm vi và quyền truy cập đã rõ.
+
+Kiểm tra họ có bắt đầu được, báo vướng đúng người, đề nghị đổi contract đúng cách và bàn giao bằng chứng tái kiểm được không. Trong task hiện có, ghi số lần hỏi lại do thiếu thông tin, lỗi interface, số lần trả lại vì thiếu bằng chứng và kết quả AC sau tích hợp. Sửa packet theo lỗi quan sát được trước khi mở rộng giao việc. Chưa chạy ghi **not-run**; khách nghiệm thu nghiệp vụ riêng.

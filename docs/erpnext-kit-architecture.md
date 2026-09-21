@@ -17,7 +17,7 @@ The kit intentionally does not ship a fake app scaffold or guessed DocTypes as w
 
 `skill/reference/delivery-contract.md` owns the compact spec baseline, specialist task, change delta and review evidence contract. The command references load it as needed; [the Vietnamese workflow](spec-review-workflow-vi.md) shows how a solo founder uses it. Review inspects specs, tasks, diffs and proposed changes without implicitly authorizing repairs. A review verdict names its gate and never replaces customer UAT or deployment authorization.
 
-The workflow uses independently authored ERPNext instructions informed by a local review of general BA practices. It does not bundle the commercial AI4BA kit, its templates/scripts or personal license metadata, and does not depend on that kit being installed. Keep one skill and existing commands rather than adding a separate BA command family.
+The workflow adapts selected BA practices into ERPNext-specific instructions. It does not depend on a separate BA-kit installation. Keep one skill and existing commands; extend the owning reference rather than adding a command for every analysis technique. Third-party source and license records belong with any content actually redistributed, not in workflow assumptions.
 
 ## Build and install
 
